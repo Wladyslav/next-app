@@ -63,7 +63,7 @@ const AttractionSchema = new mongoose.Schema({
         type: String, 
       },
       images: [{
-        type: String, // Możesz przechowywać adresy URL do obrazów jako tablicę stringów
+        type: String, 
       }],
       reviews: [{
         type: Schema.Types.ObjectId,

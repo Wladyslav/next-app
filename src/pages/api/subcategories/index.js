@@ -1,6 +1,5 @@
-// pages/api/users/index.js
 import dbConnect from '../../../../utils/dbConnect';
-import User from '../../../../models/User';
+import Subcategory from '../../../../models/Subcategory';
 
 dbConnect();
 
@@ -10,22 +9,20 @@ export default async function handler(req, res) {
   switch (method) {
     case 'GET':
       try {
-        const users = await User.find({});
-        res.status(200).json({ success: true, data: users });
+        const subcategories = await Subcategory.find({}).populate('category');
+        res.status(200).json({ success: true, data: subcategories });
       } catch (error) {
         res.status(400).json({ success: false, error: error.message });
       }
       break;
-
     case 'POST':
       try {
-        const user = await User.create(req.body); // Tworzenie nowego użytkownika
-        res.status(201).json({ success: true, data: user });
+        const subcategory = await Subcategory.create(req.body);
+        res.status(201).json({ success: true, data: subcategory });
       } catch (error) {
         res.status(400).json({ success: false, error: error.message });
       }
       break;
-
     default:
       res.status(400).json({ success: false });
       break;

@@ -1,6 +1,6 @@
-// pages/api/users/index.js
+// pages/api/categories/index.js
 import dbConnect from '../../../../utils/dbConnect';
-import User from '../../../../models/User';
+import Category from '../../../../models/Category';
 
 dbConnect();
 
@@ -10,8 +10,8 @@ export default async function handler(req, res) {
   switch (method) {
     case 'GET':
       try {
-        const users = await User.find({});
-        res.status(200).json({ success: true, data: users });
+        const categories = await Category.find({});
+        res.status(200).json({ success: true, data: categories });
       } catch (error) {
         res.status(400).json({ success: false, error: error.message });
       }
@@ -19,8 +19,8 @@ export default async function handler(req, res) {
 
     case 'POST':
       try {
-        const user = await User.create(req.body); // Tworzenie nowego użytkownika
-        res.status(201).json({ success: true, data: user });
+        const category = await Category.create(req.body); // Tworzenie nowej kategorii
+        res.status(201).json({ success: true, data: category });
       } catch (error) {
         res.status(400).json({ success: false, error: error.message });
       }

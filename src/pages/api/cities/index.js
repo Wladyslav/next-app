@@ -1,6 +1,6 @@
-// pages/api/users/index.js
+// pages/api/cities/index.js
 import dbConnect from '../../../../utils/dbConnect';
-import User from '../../../../models/User';
+import City from '../../../../models/City';
 
 dbConnect();
 
@@ -10,8 +10,8 @@ export default async function handler(req, res) {
   switch (method) {
     case 'GET':
       try {
-        const users = await User.find({});
-        res.status(200).json({ success: true, data: users });
+        const cities = await City.find({});
+        res.status(200).json({ success: true, data: cities });
       } catch (error) {
         res.status(400).json({ success: false, error: error.message });
       }
@@ -19,8 +19,8 @@ export default async function handler(req, res) {
 
     case 'POST':
       try {
-        const user = await User.create(req.body); // Tworzenie nowego użytkownika
-        res.status(201).json({ success: true, data: user });
+        const city = await City.create(req.body); // Tworzenie nowego miasta
+        res.status(201).json({ success: true, data: city });
       } catch (error) {
         res.status(400).json({ success: false, error: error.message });
       }
